@@ -25,6 +25,6 @@ spec:
     workingDir: /workspace/source
     command: ['kubectl']
     args:
-    - apply
+    - replace
     - -f
     - $(inputs.params.K8S_DIRECTORY_PATH)
