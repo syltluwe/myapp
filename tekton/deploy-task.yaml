@@ -12,6 +12,11 @@ spec:
       description: Path to the directory for kubectl apply -f
       default: config/
   steps:
+  - name: prepare-config
+    image: ubuntu  # contains bash
+    script: |
+      #!/usr/bin/env bash
+      echo $(resource.source.revision)
   - name: apply-config
     image: lachlanevenson/k8s-kubectl
     workingDir: /workspace/source
