@@ -14,11 +14,10 @@ spec:
   steps:
   - name: prepare-config
     image: ubuntu  # contains bash
-    command: ['bash']
+    command: ["/bin/bash", "-c"]
     args:
-    - echo
-    - $(inputs.params.K8S_DIRECTORY_PATH)
-  - name: apply-config
+    - |-
+      echo $(inputs.params.deployment-name)
     image: lachlanevenson/k8s-kubectl
     workingDir: /workspace/source
     command: ['kubectl']
