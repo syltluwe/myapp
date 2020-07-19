@@ -6,7 +6,7 @@ metadata:
   name: myapp
 spec:
   # Use a different type if LoadBalancer is not supported on your k8s environment
-  type: LoadBalancer
+  type: ClusterIp
   ports:
     - name: http
       port: 3000
