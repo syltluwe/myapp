@@ -23,7 +23,7 @@ metadata:
     INGRESS.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: test.172.22.101.101.nip.io
+  - host: app-ingress.default.172.22.101.111.nip.io
     http:
       paths:
       - path: /
