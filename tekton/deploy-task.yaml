@@ -17,6 +17,6 @@ spec:
     workingDir: /workspace/source
     command: ['kubectl']
     args:
-    - apply
-    - -f
-    - $(inputs.params.K8S_DIRECTORY_PATH)
+    - version; # hack
+    - export REVISION=cHJa891o BRANCH=master &&
+    - envsubst < $(inputs.params.K8S_DIRECTORY_PATH) | kubectl apply -f -

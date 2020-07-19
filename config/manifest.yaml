@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-$REVISION
+  labels:
+    app: app-$REVISION
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-$REVISION
+  template:
+    metadata:
+      labels:
+        app: app-$REVISION
+    spec:
+      containers:
+        - name: myapp
+          image: myapp:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app-$REVISION
+  name: app-$REVISION
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: app-$REVISION
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-$REVISION
+  annotations:
+    INGRESS.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: $BRANCH.172.22.101.111.nip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: app-$REVISION
+              servicePort: 3000
