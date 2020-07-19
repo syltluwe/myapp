@@ -28,4 +28,3 @@ spec:
     - apply
     - -f
     - $(inputs.params.K8S_DIRECTORY_PATH)
-
