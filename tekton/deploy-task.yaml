@@ -14,9 +14,10 @@ spec:
   steps:
   - name: prepare-config
     image: ubuntu  # contains bash
-    script: |
-      #!/usr/bin/env bash
-      echo "hello"
+    command: ['bash']
+    args:
+    - echo
+    - $(inputs.params.K8S_DIRECTORY_PATH)
   - name: apply-config
     image: lachlanevenson/k8s-kubectl
     workingDir: /workspace/source
