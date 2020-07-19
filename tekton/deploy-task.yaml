@@ -17,11 +17,11 @@ spec:
     script: |
       #!/usr/bin/env bash
       echo $(resource.source.revision)
-  - name: apply-config
-    image: lachlanevenson/k8s-kubectl
-    workingDir: /workspace/source
-    command: ['kubectl']
-    args:
-    - apply
-    - -f
-    - $(inputs.params.K8S_DIRECTORY_PATH)
+#  - name: apply-config
+#    image: lachlanevenson/k8s-kubectl
+#    workingDir: /workspace/source
+#    command: ['kubectl']
+#    args:
+#    - apply
+#    - -f
+#    - $(inputs.params.K8S_DIRECTORY_PATH)
