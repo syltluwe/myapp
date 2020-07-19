@@ -11,13 +11,16 @@ spec:
     - name: K8S_DIRECTORY_PATH
       description: Path to the directory for kubectl apply -f
       default: config/
+    - name: GIT_REVISION
+      description: Revision
+      default: a1234
   steps:
   - name: prepare-config
     image: lachlanevenson/k8s-kubectl  # contains bash
     command: ["/bin/bash", "-c"]
     args:
     - |-
-      echo $(resource.source.revision)
+      echo $(inputs.params.GIT_REVISION)
   - name: apply-config
     image: lachlanevenson/k8s-kubectl
     workingDir: /workspace/source
