@@ -14,3 +14,19 @@ spec:
       protocol: TCP
   selector:
     app: myapp
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app-ingress
+  annotations:
+    INGRESS.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: test.172.22.101.101.nip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myapp
+          servicePort: 3000
