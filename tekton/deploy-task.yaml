@@ -13,7 +13,7 @@ spec:
       default: config/
   steps:
   - name: prepare-config
-    image: ubuntu  # contains bash
+    image: lachlanevenson/k8s-kubectl  # contains bash
     command: ["/bin/bash", "-c"]
     args:
     - |-
