@@ -1,0 +1,11 @@
+---
+- name: "prepare-cofig"
+  hosts: 127.0.0.1
+  connection: local
+  vars:
+    service_template_path: "{{ playbook_dir }}/../../config"
+  tasks:
+  - name: "set service"
+    template:
+      src: "{{ service_template_path }}/service.yaml.j2"
+      dest: "{{ service_template_path }}/service.yaml"

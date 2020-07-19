@@ -11,16 +11,15 @@ spec:
     - name: K8S_DIRECTORY_PATH
       description: Path to the directory for kubectl apply -f
       default: config/
-    - name: GIT_REVISION
-      description: Revision
-      default: a1234
   steps:
   - name: prepare-config
-    image: lachlanevenson/k8s-kubectl  # contains bash
-    command: ["/bin/bash", "-c"]
+    image: philm/ansible_playbook
+    workingDir: /workspace/source
+    command: ['ansible-playbook']
     args:
-    - |-
-      echo $(inputs.params.GIT_REVISION)
+      - ansible/playbooks/prepare-config.yml
+      - -e "app_name=123"
+      - -e "branch_slug=hqwdhwqudhqwo"
   - name: apply-config
     image: lachlanevenson/k8s-kubectl
     workingDir: /workspace/source
